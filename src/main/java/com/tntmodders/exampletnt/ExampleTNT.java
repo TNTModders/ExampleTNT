@@ -6,6 +6,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(ExampleTNT.MOD_ID)
 public class ExampleTNT {
+
     public static final String MOD_ID = "exampletnt";
 
     public ExampleTNT() {
