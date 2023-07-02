@@ -12,6 +12,8 @@ public class ExampleTNTEvents {
     public static void creativeTabsBuildEvent(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ExampleTNTItems.SMALL_TNT.get());
+        } else if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
+            event.accept(ExampleTNTBlocks.LARGE_TNT.get());
         }
     }
 }

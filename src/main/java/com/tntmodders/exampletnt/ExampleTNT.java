@@ -1,5 +1,6 @@
 package com.tntmodders.exampletnt;
 
+import com.tntmodders.exampletnt.provider.ExampleTNTBlockStateProvider;
 import com.tntmodders.exampletnt.provider.ExampleTNTItemModelProvider;
 import com.tntmodders.exampletnt.provider.ExampleTNTLangProvider;
 import net.minecraft.data.DataGenerator;
@@ -18,6 +19,7 @@ public class ExampleTNT {
     public ExampleTNT() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::registerProviders);
+        ExampleTNTBlocks.register(modEventBus);
         ExampleTNTItems.register(modEventBus);
     }
 
@@ -26,6 +28,7 @@ public class ExampleTNT {
         PackOutput packOutput = gen.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
         gen.addProvider(event.includeClient(), new ExampleTNTItemModelProvider(packOutput, fileHelper));
+        gen.addProvider(event.includeClient(), new ExampleTNTBlockStateProvider(packOutput, fileHelper));
         gen.addProvider(event.includeClient(), new ExampleTNTLangProvider.ExampleTNTLangUS(gen.getPackOutput()));
         gen.addProvider(event.includeClient(), new ExampleTNTLangProvider.ExampleTNTLangJP(gen.getPackOutput()));
     }
