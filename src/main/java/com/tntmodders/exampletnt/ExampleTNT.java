@@ -3,6 +3,7 @@ package com.tntmodders.exampletnt;
 import com.tntmodders.exampletnt.provider.ExampleTNTBlockStateProvider;
 import com.tntmodders.exampletnt.provider.ExampleTNTItemModelProvider;
 import com.tntmodders.exampletnt.provider.ExampleTNTLangProvider;
+import com.tntmodders.exampletnt.provider.ExampleTNTRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -31,5 +32,6 @@ public class ExampleTNT {
         gen.addProvider(event.includeClient(), new ExampleTNTBlockStateProvider(packOutput, fileHelper));
         gen.addProvider(event.includeClient(), new ExampleTNTLangProvider.ExampleTNTLangUS(gen.getPackOutput()));
         gen.addProvider(event.includeClient(), new ExampleTNTLangProvider.ExampleTNTLangJP(gen.getPackOutput()));
+        gen.addProvider(event.includeServer(), new ExampleTNTRecipeProvider(gen.getPackOutput()));
     }
 }
