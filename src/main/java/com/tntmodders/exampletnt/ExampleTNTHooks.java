@@ -1,5 +1,7 @@
 package com.tntmodders.exampletnt;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -8,6 +10,7 @@ import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -48,6 +51,13 @@ public class ExampleTNTHooks {
     public static void mobSpawnEvent(MobSpawnEvent.FinalizeSpawn event) {
         if (event.getEntity() instanceof Phantom) {
             event.setSpawnCancelled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void event(ItemTossEvent event) {
+        if (event.getEntity().getItem().is(ExampleTNTItems.SMALL_TNT.get()) && event.getPlayer() instanceof ServerPlayer serverPlayer) {
+            serverPlayer.getAdvancements().award(serverPlayer.getServer().getAdvancements().getAdvancement(new ResourceLocation(ExampleTNT.MOD_ID, "small_tnt")), "toss_small_tnt");
         }
     }
 }
