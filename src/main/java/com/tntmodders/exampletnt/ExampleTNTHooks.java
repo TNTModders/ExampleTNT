@@ -55,7 +55,7 @@ public class ExampleTNTHooks {
     }
 
     @SubscribeEvent
-    public static void event(ItemTossEvent event) {
+    public static void itemTossEvent(ItemTossEvent event) {
         if (event.getEntity().getItem().is(ExampleTNTItems.SMALL_TNT.get()) && event.getPlayer() instanceof ServerPlayer serverPlayer) {
             serverPlayer.getAdvancements().award(serverPlayer.getServer().getAdvancements().getAdvancement(new ResourceLocation(ExampleTNT.MOD_ID, "small_tnt")), "toss_small_tnt");
         }
