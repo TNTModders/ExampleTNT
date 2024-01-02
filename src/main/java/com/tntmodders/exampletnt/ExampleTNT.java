@@ -31,5 +31,9 @@ public class ExampleTNT {
         gen.addProvider(event.includeClient(), new ExampleTNTLangProvider.ExampleTNTLangJP(gen.getPackOutput()));
         gen.addProvider(event.includeServer(), new ExampleTNTRecipeProvider(gen.getPackOutput()));
         gen.addProvider(event.includeServer(), new ExampleTNTAdvancementProvider(packOutput, event.getLookupProvider(), fileHelper));
+
+        ExampleTNTBlockTagsProvider blockTagsProvider = new ExampleTNTBlockTagsProvider(packOutput, event.getLookupProvider(), fileHelper);
+        gen.addProvider(event.includeServer(), blockTagsProvider);
+        gen.addProvider(event.includeServer(), new ExampleTNTItemTagsProvider(packOutput, event.getLookupProvider(), blockTagsProvider.contentsGetter(), fileHelper));
     }
 }

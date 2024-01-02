@@ -1,5 +1,6 @@
 package com.tntmodders.exampletnt;
 
+import com.tntmodders.exampletnt.provider.ExampleTNTItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -58,6 +59,9 @@ public class ExampleTNTHooks {
     public static void itemTossEvent(ItemTossEvent event) {
         if (event.getEntity().getItem().is(ExampleTNTItems.SMALL_TNT.get()) && event.getPlayer() instanceof ServerPlayer serverPlayer) {
             serverPlayer.getAdvancements().award(serverPlayer.getServer().getAdvancements().getAdvancement(new ResourceLocation(ExampleTNT.MOD_ID, "small_tnt")), "toss_small_tnt");
+        }
+        if (event.getEntity().getItem().is(ExampleTNTItemTagsProvider.TOSS_EXPLOSIVE) && !event.getEntity().getLevel().isClientSide()) {
+            event.getEntity().getLevel().explode(event.getPlayer(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), 1f, true, Level.ExplosionInteraction.TNT);
         }
     }
 }

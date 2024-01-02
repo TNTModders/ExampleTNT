@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ExampleTNTBlocks {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ExampleTNT.MOD_ID);
-    public static final RegistryObject<Block> LARGE_TNT = BLOCKS.register("large_tnt", () -> new Block(BlockBehaviour.Properties.of(Material.EXPLOSIVE).lightLevel(value -> 15)));
+    public static final RegistryObject<Block> LARGE_TNT = BLOCKS.register("large_tnt", () -> new Block(BlockBehaviour.Properties.of(Material.EXPLOSIVE).lightLevel(value -> 15).destroyTime(1f)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
